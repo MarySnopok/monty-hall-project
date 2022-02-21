@@ -17,7 +17,7 @@ import { API_URL } from "../utils/constants";
 
 export const Game = () => {
   const [simulations, setSimulations] = useState("");
-  const [doorStatus, setDoorChange] = useState(false);
+  const [doorChange, setDoorChange] = useState(false);
   const [alertShown, setAlertShown] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,18 +27,18 @@ export const Game = () => {
     dispatch(game.actions.setSimulationsCount(simulations));
     setSimulations("");
     const options = {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ simulations, doorStatus }),
+      body: JSON.stringify({ simulations, doorChange }),
     };
     fetch(API_URL, options)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if (data.success) {
-          dispatch(game.actions.setGameResult(data.response.winCount));
+        if (data.status === "success") {
+          console.log("what a hell");
+          dispatch(game.actions.setGameResult(data.winCount));
           dispatch(game.actions.setError(null));
 
           navigate("/end");
@@ -47,21 +47,20 @@ export const Game = () => {
           dispatch(game.actions.setError(data.response));
         }
       });
-    dispatch(game.actions.setSimulationsCount(null));
   };
 
   const onButtonClick = (e) => {
     e.preventDefault();
     if (simulations === "") {
       setAlertShown("Oops, please add valid parameters.");
-    } else if (parseInt(simulations) <= 0) {
-      setAlertShown("Number of simulations should be > 0.");
+    } else if (parseInt(simulations, 10) <= 0 || parseInt(simulations, 10) > 10_000) {
+      setAlertShown("Number of simulations should be > 0. and less than 10 000");
     } else {
       onFormSubmit(e);
     }
   };
 
-  console.log(doorStatus);
+  console.log(doorChange);
 
   return (
     <div className="grid" style={{ minWidth: 275 }}>
@@ -93,7 +92,7 @@ export const Game = () => {
                 </label>
                 <Radio
                   inputProps={{ "aria-label": "selection" }}
-                  checked={doorStatus === true}
+                  checked={doorChange === true}
                   className="credentials"
                   id="doorChangeYes"
                   type="radio"
@@ -107,7 +106,7 @@ export const Game = () => {
                   className="credentials"
                   id="doorChangeNo"
                   type="radio"
-                  checked={doorStatus === false}
+                  checked={doorChange === false}
                   onChange={() => setDoorChange(false)}
                 />
               </div>

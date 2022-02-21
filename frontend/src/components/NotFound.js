@@ -12,7 +12,7 @@ export const NotFound = () => {
       <Box className="card" sx={{ minWidth: 275 }}>
         <Card variant="outlined">
           <CardContent>
-            <div className="label-wrapper">Page not found...</div>
+            <div className="label-wrapper">Page not found.</div>
           </CardContent>
         </Card>
       </Box>
