@@ -5,15 +5,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-
 .grid {
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   margin-top: 100px;
+}
+.back-link {
+  text-decoration: none;
+  color: black;
+}
+.back-link:hover {
+  text-decoration: underline;
+  color: rgba(0, 0, 0, 0.42);
+}
+.link-container {
+  margin-top: 20px;
 }
 .card {
   -webkit-box-shadow: 7px 7px 0px 1px rgba(0, 0, 0, 0.42);
@@ -21,24 +32,24 @@ code {
   border-radius: 2px;
   font-size: medium;
 }
-.welcome-container {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 .container {
   width: 300px;
   display: grid;
   padding: 10px;
   align-items: center;
 }
+.heading-container {
+  margin: 0 20px 0 20px;
+  padding: 10px;
+  align-items: flex-start;
+  justify-content: center;
+}
 .label-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  margin-top: 10px;
 }
 .tag-wrapper {
   display: flex;
@@ -53,6 +64,7 @@ code {
   flex-wrap: wrap;
   margin: 12px 0 12px 0;
   word-break: break-all;
+  cursor: pointer;
 }
 .success {
   text-align: center;
@@ -61,31 +73,13 @@ code {
   font-size: medium;
   font-weight: bolder;
 }
-.symbols-counter {
-  margin-top: 0;
-  color: var(--theme-color);
-  margin-bottom: 0;
-  font-size: smaller;
-}
 .move-btn {
   margin-bottom: 0;
-  margin-top: 10px;
+  margin-top: 40px;
 }
 .highlight {
   color: #248e6b;
 }
-.credentials {
-  margin-bottom: 10px;
-}
-/* .back-link {
-  text-decoration: none;
-  color: black;
-  padding: 10px;
-}
-.back-link:hover {
-  color: #248e6b;
-  text-decoration: underline;
-} */
 
 @media (min-width: 767px) {
   .card {
@@ -95,7 +89,7 @@ code {
     font-size: medium;
   }
   .container,
-  .welcome-container {
+  .heading-container {
     width: 550px;
     padding: 30px;
   }
@@ -103,9 +97,6 @@ code {
     display: flex;
     flex-wrap: wrap;
     margin: 16px 0 16px 0;
-  }
-  .credentials {
-    margin-bottom: 20px;
   }
   .success {
     font-size: large;

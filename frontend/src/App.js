@@ -1,21 +1,17 @@
 import React from "react";
-// import { Form } from "./Form";
-// import { Welcome } from "./Welcome";
-// import { Private } from "PrivateScreen";
+
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import Main from "./components/Main";
-import Login from "./components/Login";
-import NotFound from "./components/NotFound";
+import { Game } from "./components/Game";
+import { End } from "./components/End";
+import { NotFound } from "./components/NotFound";
 
-import user from "./reducers/user";
-import thoughts from "./reducers/thoughts";
+import game from "./reducers/game";
 
 const reducer = combineReducers({
-  user: user.reducer,
-  thoughts: thoughts.reducer,
+  game: game.reducer,
 });
 
 const store = configureStore({ reducer });
@@ -41,8 +37,8 @@ export const App = () => {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Game />} />
+            <Route path="/end" element={<End prise={"car"} attempts={5} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
