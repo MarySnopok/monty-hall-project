@@ -1,4 +1,5 @@
 export const montyHallSimulator = (numSimulations, doorChange) => {
+  //declaring an aggregating variable to store the win count
   let winCount = 0;
 
   for (let i = 0; i <= numSimulations; i++) {

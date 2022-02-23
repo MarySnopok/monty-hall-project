@@ -17,6 +17,13 @@ app.post("/", (req, res) => {
   const numSimulations = parseInt(req.body.simulations);
   const doorChange = req.body.doorChange;
 
+  if (!doorChange) {
+    res.status(400).json({
+      response: "wrong request: missing data",
+      status: "error",
+    });
+  }
+
   if (Number.isNaN(numSimulations) || numSimulations < 1 || numSimulations > MAXIMUM_SIMULATIONS || Math.round(numSimulations) !== numSimulations) {
     res.status(400).json({
       response: `wrong request: inappropriate amount of simulations, must be positive integer less than ${MAXIMUM_SIMULATIONS}`,
@@ -31,6 +38,5 @@ app.post("/", (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  // eslint-disable-next-line
   console.log(`Server running on http://localhost:${port}`);
 });
