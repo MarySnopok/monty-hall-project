@@ -11,7 +11,7 @@ export const montyHallSimulator = (numSimulations, doorChange) => {
 
     let carLocation = allDoorsArray[Math.floor(Math.random() * allDoorsArray.length)];
 
-    // simular approach for the initial door random selection
+    // similar approach for the initial door random selection
     //of num from allDoorsArray
     let playerSelectedDoor = allDoorsArray[Math.floor(Math.random() * allDoorsArray.length)];
 
@@ -31,13 +31,7 @@ export const montyHallSimulator = (numSimulations, doorChange) => {
         winCount += 1;
       }
     }
-
-    // if doorChange is true we will switch to the resabled door
-    //that was not initially picked and was not opened by host
   }
-  //call up the function and increament the win count for each
-  //successfull run (that returned true)
-
-  //return the count of successfull runs
+  //return the count of successful runs
   return winCount;
 };

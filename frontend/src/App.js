@@ -38,7 +38,7 @@ export const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Game />} />
-            <Route path="/end" element={<End prise={"car"} attempts={5} />} />
+            <Route path="/end" element={<End />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
