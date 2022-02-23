@@ -17,7 +17,7 @@ app.post("/", (req, res) => {
   const numSimulations = parseInt(req.body.simulations);
   const doorChange = req.body.doorChange;
 
-  if (!doorChange || !numSimulations) {
+  if (doorChange === undefined || !numSimulations) {
     res.status(400).json({
       response: "wrong request: missing data",
       status: "error",
