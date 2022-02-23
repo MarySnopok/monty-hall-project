@@ -60,8 +60,6 @@ export const Game = () => {
     }
   };
 
-  console.log(doorChange);
-
   return (
     <div className="grid" style={{ minWidth: 275 }}>
       <Box className="card" sx={{ minWidth: 275 }}>
@@ -74,11 +72,11 @@ export const Game = () => {
           </div>
           <CardContent>
             <form className="container">
-              <label className="new-label" htmlFor="simulation">
+              <label className="new-label" htmlFor="simulation" aria-labelledby="simulations">
                 Add number of simulations:
               </label>
               <Input
-                inputProps={{ min: 1, max: 100 }}
+                inputProps={{ min: 1, max: 100, "data-testid": "simulations" }}
                 id="simulations"
                 type="number"
                 value={simulations}
@@ -115,7 +113,10 @@ export const Game = () => {
                   onClick={onButtonClick}
                   className="move-btn"
                   type="submit"
+                  name="submit"
+                  role="button"
                   variant="contained"
+                  data-testid="submit-button"
                   style={{ letterSpacing: 2, fontWeight: "normal", marginLeft: -8, marginTop: 40, fontSize: 14 }}
                 >
                   Submit
@@ -123,7 +124,9 @@ export const Game = () => {
               </CardActions>
               {alertShown !== "" && (
                 <div>
-                  <Alert severity="error">{alertShown}</Alert>
+                  <Alert data-testid="error-alert" severity="error">
+                    {alertShown}
+                  </Alert>
                 </div>
               )}
             </form>
