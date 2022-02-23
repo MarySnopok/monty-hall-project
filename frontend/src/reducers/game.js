@@ -21,3 +21,6 @@ const game = createSlice({
 });
 
 export default game;
+
+export const selectWinCount = (store) => store.game.winCount;
+export const selectSimulations = (store) => store.game.simulations;

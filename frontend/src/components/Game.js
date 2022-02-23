@@ -53,8 +53,8 @@ export const Game = () => {
     e.preventDefault();
     if (simulations === "") {
       setAlertShown("Oops, please add valid parameters.");
-    } else if (parseInt(simulations, 10) <= 0 || parseInt(simulations, 10) > 10_000) {
-      setAlertShown("Number of simulations should be > 0. and less than 10 000");
+    } else if (parseInt(simulations, 10) <= 0 || parseInt(simulations, 10) > 100_000) {
+      setAlertShown("Number of simulations should be > 0 and less than 100 000");
     } else {
       onFormSubmit(e);
     }

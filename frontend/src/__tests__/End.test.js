@@ -1,12 +1,22 @@
 import { End } from "../components/End";
 import { render, screen } from "@testing-library/react";
-import CardContent from "@mui/material/CardContent";
 import "@testing-library/jest-dom";
+
+jest.mock("reducers/game", function () {
+  const originalModule = jest.requireActual("reducers/game");
+
+  return {
+    __esModule: true,
+    ...originalModule,
+    selectWinCount: () => 500,
+    selectSimulations: () => 1000,
+  };
+});
 
 jest.mock("react-redux", function () {
   return {
-    useSelector: () => {
-      return "test";
+    useSelector: (selector) => {
+      return selector();
     },
     useDispatch: () => {},
   };
@@ -44,9 +54,19 @@ jest.mock("react-router", () => {
 });
 
 describe("Test end screen", () => {
-  it("it should render and not crash", () => {
+  it("should render and not crash", () => {
     const testRenderer = render(<End />);
+    expect(screen.getByText("Run new simulation!")).toBeInTheDocument();
+  });
+});
 
-    expect(screen.getByText("Play again!")).toBeInTheDocument();
+describe("Test game results rendering", () => {
+  it("should render game results", () => {
+    const testRender = render(<End />);
+    const titleValue = screen.getByTestId("test-id");
+    const winCount = screen.getByTestId("win-count");
+    const simulations = screen.getByTestId("simulations-count");
+    expect(winCount).toHaveTextContent("500");
+    expect(simulations).toHaveTextContent("1000");
   });
 });
