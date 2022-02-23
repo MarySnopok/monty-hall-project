@@ -9,5 +9,10 @@ read more : https://en.wikipedia.org/wiki/Monty_Hall_problem
 
 ## Start the project :
 
-cd backend - npm run dev
-cd frontend - npm start
+cd backend:
+npm install
+npm run dev
+
+cd frontend:
+npm install
+npm start
